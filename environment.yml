@@ -143,4 +143,10 @@ dependencies:
       - seaborn
       - pixiedust
       - japanize_matplotlib
+      - ploomber
+      - scikit-learn
+      - sklearn-evaluation
+      - jupyterlab
+      - invoke
+      - ipywidgets
 prefix: /srv/conda/envs/notebook
