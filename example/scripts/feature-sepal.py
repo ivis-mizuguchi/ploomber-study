@@ -12,28 +12,22 @@
 #     name: python3
 # ---
 
-# Get raw data
+# Generates sepal features.
 
 import pandas as pd
-from sklearn.datasets import load_linnerud
 
 # + tags=["parameters"]
-upstream = None
+upstream = ['get']
 product = None
 # -
 
 
-raw = load_linnerud(as_frame=True)
-df = raw['data']
+df = pd.read_csv(upstream['get']['data'])
 
 df.head()
 
-df['Pulse'] = raw['target']['Pulse']
+df['weight*waist'] = df['Weight'] * df['Waist']
 
-df['Waist'] = raw['target']['Waist']
-
-df['Weight'] = raw['target']['Weight']
-
-df.to_csv(product['data'], index=False)
+df[['weight*waist']].to_csv(product['data'], index=False)
 
 

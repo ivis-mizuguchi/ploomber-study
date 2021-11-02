@@ -12,28 +12,22 @@
 #     name: python3
 # ---
 
-# Get raw data
+# Generates petal features.
 
 import pandas as pd
-from sklearn.datasets import load_linnerud
 
 # + tags=["parameters"]
-upstream = None
+upstream = ['get']
 product = None
 # -
 
 
-raw = load_linnerud(as_frame=True)
-df = raw['data']
+df = pd.read_csv(upstream['get']['data'])
 
 df.head()
 
-df['Pulse'] = raw['target']['Pulse']
+df['pulse*waist'] = df['Pulse'] * df['Waist']
 
-df['Waist'] = raw['target']['Waist']
-
-df['Weight'] = raw['target']['Weight']
-
-df.to_csv(product['data'], index=False)
+df[['pulse*waist']].to_csv(product['data'], index=False)
 
 
